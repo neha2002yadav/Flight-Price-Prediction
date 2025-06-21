@@ -1,128 +1,118 @@
+# ✈️ Flight Price Prediction
 
-
-# ✈️ Flight Price Prediction using Machine Learning
-![Flight Price Prediction](https://github.com/sumankhatua5/Flight_Fare_Prediction/blob/main/1_kNBJQzG-tIWHGIcjv-7x4A%20(1).jpg)
-
-
-
-This project predicts flight ticket prices using machine learning. With an accuracy of **83%** achieved using a **Random Forest Regressor**, this web-based application is designed to provide reliable fare predictions based on key features such as airline, stops, travel duration, and more.
+This project focuses on predicting airline ticket prices using machine learning techniques. By analyzing key flight-related features such as airline, source, destination, number of stops, duration, and journey details, this model aims to provide accurate price predictions to help users make informed travel decisions.
 
 ---
 
-## 🌟 Key Highlights
+## 📌 Table of Contents
+ -  Problem Statement
+ -  Dataset Description
+ -  Tools & Technologies Used
+ -  Data Preprocessing
+ -  Exploratory Data Analysis (EDA)
+ -  Model Building
+ -  Model Evaluation
+ -  Key Findings
+ -  Future Scope
+ -  How to Run
 
-- **💡 Real-Time Price Prediction**: Get instant fare predictions based on your flight details.
-- **📊 Data Processing**: Managed missing values, outliers, and engineered features for improved prediction performance.
-- **🛠️ Machine Learning**: Achieved **80% accuracy** with a **Random Forest Regressor**.
-- **📈 Visualizations**: Gain insights into flight pricing trends with graphical representations.
-- **🌐 Streamlit Web App**: User-friendly and intuitive interface for instant predictions.
 
----
+## 🎯 Problem Statement
 
-## 📂 Dataset
+Airline ticket prices vary widely depending on several factors, including the airline, duration, number of stops, departure time, and more. This project aims to:
+- Predict flight fares based on given input features.
+- Understand the underlying trends in flight pricing through data analysis.
+- Help users and businesses make better decisions for travel planning or fare estimation.
 
-The dataset is sourced from **Kaggle**: [Flight Fare Prediction Dataset](https://www.kaggle.com/nikhilmittal/flight-fare-prediction-mh). It includes the following features:
 
-- **Airline**: Name of the airline.
-- **Source**: Departure city.
-- **Destination**: Arrival city.
-- **Duration**: Flight duration.
-- **Total_Stops**: Number of stops.
-- **Price**: Target variable representing flight price.
-- **Date_of_Journey**: The date of the journey, transformed into `Journey_day` and `Journey_month`.
-- **Dep_time**: Split into `Dep_hour` and `Dep_min` to represent flight departure time.
-- **Arrival_time**: Split into `Arrival_hour` and `Arrival_min` for flight arrival time.
+## 🗂 Dataset Description
 
----
+The dataset used for this project contains the following columns:
+- **Airline**: The name of the airline
+- **Date_of_Journey**: Journey date
+- **Source**: Departure city
+- **Destination**: Arrival city
+- **Route**: Route of the flight
+- **Dep_Time**: Departure time
+- **Arrival_Time**: Arrival time
+- **Duration**: Total duration of the flight
+- **Total_Stops**: Number of stops
+- **Additional_Info**: Miscellaneous information
+- **Price**: Target variable (fare of the flight)
 
-## 🧠 Data Preprocessing
 
-- **Null Value Handling**: Missing values were handled using imputation techniques, ensuring no information loss.
-- **Outlier Detection**: Applied **IQR** to detect and remove price outliers.
-- **Feature Engineering**: Key transformations included splitting date and time fields into more granular features like `Dep_hour`, `Arrival_hour`, `Journey_day`, and `Journey_month`.
+## 🛠 Tools & Technologies Used
 
----
+- **Languages**: Python  
+- **Libraries**:  
+  - NumPy  
+  - Pandas  
+  - Matplotlib  
+  - Seaborn  
+  - Scikit-learn  
+- **IDE**: Jupyter Notebook  
+- **Version Control**: Git & GitHub  
 
-## 🏗️ Machine Learning Model
 
-- **Model Used**: **Random Forest Regressor** was chosen for its ability to handle complex data relationships and non-linearity.
-- **Accuracy**: Achieved an impressive **80% accuracy**, indicating the model's strong predictive capability.
-- **Libraries**: Utilized **Pandas** and **NumPy** for data manipulation and preparation, while **Scikit-learn** was used for model training and evaluation.
+## 🧹 Data Preprocessing
 
-### Evaluation Metrics:
-- **R² Score**: Explained variance for predicted prices.
-- **Mean Absolute Error (MAE)**: Evaluated average prediction error.
+Steps performed:
+- Handled missing values (especially in Route and Total_Stops)
+- Extracted day, month, hour, and minute from date-time columns
+- Converted categorical variables using One-Hot and Label Encoding
+- Removed outliers and duplicates
+- Feature engineering (flight duration in minutes, weekday/weekend categorization)
 
----
 
-## 📊 Visualizations
+## 📊 Exploratory Data Analysis (EDA)
 
-In the jupyter notebook i provides insightful visualizations to help users understand key trends:
-- **Price Distribution**: Visualize how flight prices are distributed.
-- **Airline Pricing**: Compare average prices across different airlines.
-- **Correlation Matrix**: Explore relationships between various flight details and pricing.
+Some key insights:
+- Prices vary significantly with the number of stops (non-stop flights are more expensive)
+- Certain airlines consistently charge higher fares
+- Evening and night flights tend to be cheaper than early morning flights
+- Duration and total stops are directly proportional to price
 
----
 
-## 🚀 Live Demo
+## 🤖 Model Building
 
-Check out the live version of the application here:
-[Live Flight Price Prediction App](https://flightpricepredictionn.streamlit.app/)
+Models tested:
+- Linear Regression
+- Decision Tree Regressor
+- **Random Forest Regressor** ✅ *(Best performance)*
+- XGBoost Regressor
 
----
 
-## 🌐 How to Use
+## 📈 Model Evaluation
 
-1. **Input Details**: 
-   - Choose the **Airline**, **Source**, and **Destination** cities.
-   - Select the **Date of Journey** and flight **Duration**.
-   - Enter the number of **Stops**.
+| Model                  | R² Score | RMSE       |
+|------------------------|----------|------------|
+| Linear Regression      | 0.61     | Moderate   |
+| Decision Tree Regressor| 0.85     | Low        |
+| **Random Forest**      | **0.92** | **Very Low** |
+| XGBoost                | 0.89     | Low        |
 
-2. **Get Predicted Price**: 
-   - Based on the provided input, the app will display the **Predicted Price** for the flight.
+✅ **Random Forest Regressor** was selected due to its high accuracy and robustness to overfitting.
 
----
 
-## 🛠️ Technologies Used
+## 🔍 Key Findings
 
-- **Frontend**: Streamlit for building the web application.
-- **Backend**: Python for data processing and machine learning.
-- **Libraries**:
-  - **Pandas**: For data manipulation and preprocessing.
-  - **NumPy**: For numerical computations.
-  - **Scikit-learn**: For model building and evaluation.
-  
----
+- Airline and number of stops are the most important features.
+- Feature engineering significantly improves model accuracy.
+- Random Forest performs best due to its ensemble approach.
 
-## 🏗️ Project Workflow
 
-1. **Data Preprocessing**:
-   - Null values handled using imputation.
-   - Outliers identified and removed to improve data quality.
-   - Features engineered from date and time fields to improve model performance.
-   
-2. **Model Building**:
-   - **Random Forest Regressor** used for price prediction.
-   - Achieved **80% accuracy** after hyperparameter tuning.
+## 🚀 Future Scope
 
-3. **Web App Development**:
-   - Built using **Streamlit** for an interactive interface.
-   - Deployed for easy access to flight price predictions.
-## 📬 Contact
-
-If you have any questions or feedback, reach out to me:
-
-- **Your Name**: [Your LinkedIn](https://www.linkedin.com/in/suman-khatua-919a7b2b0/)
-- **Email**: sumankhatua51@gmail.com
-
----
-
-## 🌱 Future Improvements
-- **Additional Features**: i will Introduce features like flight class, day of the week, or demand trends to improve predictions
- and low cost flight recomendation .
-- **Deployment**: in future i will Extend the app for mobile and cloud-based accessibility.
-
----
+- Integrate live flight data through APIs.
+- Deploy model as a web or mobile app.
+- Add features like weather, holidays, seat class, and booking window.
+- Use advanced models like LSTM for sequential pricing prediction.
 
 
 
+## ▶️ How to Run
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/neha2002yadav/Flight-Price-Prediction.git
+   cd Flight-Price-Prediction
